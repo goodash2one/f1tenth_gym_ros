@@ -24,6 +24,7 @@ from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.substitutions import Command
 from ament_index_python.packages import get_package_share_directory
+from launch_ros.actions import PushRosNamespace
 import os
 import yaml
 
@@ -35,8 +36,8 @@ def generate_launch_description():
         'sim.yaml'
         )
     config_dict = yaml.safe_load(open(config, 'r'))
-    has_opp = config_dict['bridge']['ros__parameters']['num_agent'] > 1
-    teleop = config_dict['bridge']['ros__parameters']['kb_teleop']
+    has_opp = config_dict['/sim/bridge']['ros__parameters']['num_agent'] > 1
+    teleop = config_dict['/sim/bridge']['ros__parameters']['kb_teleop']
 
     bridge_node = Node(
         package='f1tenth_gym_ros',
@@ -53,7 +54,7 @@ def generate_launch_description():
     map_server_node = Node(
         package='nav2_map_server',
         executable='map_server',
-        parameters=[{'yaml_filename': config_dict['bridge']['ros__parameters']['map_path'] + '.yaml'},
+        parameters=[{'yaml_filename': config_dict['/sim/bridge']['ros__parameters']['map_path'] + '.yaml'},
                     {'topic': 'map'},
                     {'frame_id': 'map'},
                     {'output': 'screen'},
@@ -84,6 +85,7 @@ def generate_launch_description():
     )
 
     # finalize
+    ld.add_action(PushRosNamespace('sim'))
     ld.add_action(rviz_node)
     ld.add_action(bridge_node)
     ld.add_action(nav_lifecycle_node)

@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-bridge:
+/sim/bridge:
   ros__parameters:
     # topics and namespaces
     ego_namespace: 'ego_racecar'
@@ -42,7 +42,7 @@ bridge:
     scan_beams: 1080
 
     # map parameters
-    map_path: '/sim_ws/src/f1tenth_gym_ros/maps/levine'
+    map_path: '/home/user/f1tenth_ws/src/f1tenth_gym_ros/maps/levine'
     map_img_ext: '.png'
 
     # opponent parameters
