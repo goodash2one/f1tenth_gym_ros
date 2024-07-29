@@ -56,7 +56,7 @@ def generate_launch_description():
         executable='map_server',
         parameters=[{'yaml_filename': config_dict['/sim/bridge']['ros__parameters']['map_path'] + '.yaml'},
                     {'topic': 'map'},
-                    {'frame_id': 'map'},
+                    {'frame_id': 'sim'},
                     {'output': 'screen'},
                     {'use_sim_time': True}]
     )
