@@ -77,7 +77,16 @@ class GymBridge(Node):
         self.env = gym.make('f110_gym:f110-v0',
                             map=self.get_parameter('map_path').value,
                             map_ext=self.get_parameter('map_img_ext').value,
-                            num_agents=num_agents)
+                            num_agents=num_agents,
+                            params={'mu': 0.5,\
+                                    'C_Sf': 4.718, 'C_Sr': 5.4562,\
+                                    'lf': 0.15875, 'lr': 0.17145,\
+                                    'h': 0.074, 'm': 4.74, 'I': 0.04712,\
+                                    's_min': -0.3636, 's_max': 0.3636,\
+                                    'sv_min': -3.2, 'sv_max': 3.2,\
+                                    'v_switch': 7.319,\
+                                    'a_max': 9.51, 'v_min':-5.0, 'v_max': 20.0,\
+                                    'width': 0.31, 'length': 0.58})
 
         sx = self.get_parameter('sx').value
         sy = self.get_parameter('sy').value
@@ -128,7 +137,7 @@ class GymBridge(Node):
         # sim physical step timer
         self.drive_timer = self.create_timer(0.01, self.drive_timer_callback)
         # topic publishing timer
-        self.timer = self.create_timer(0.004, self.timer_callback)
+        self.timer = self.create_timer(0.025, self.timer_callback)
 
         # transform broadcaster
         self.br = TransformBroadcaster(self)
