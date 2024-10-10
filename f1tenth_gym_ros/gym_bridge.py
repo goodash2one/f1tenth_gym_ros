@@ -73,6 +73,26 @@ class GymBridge(Node):
         elif type(num_agents) != int:
             raise ValueError('num_agents should be an int.')
 
+        """
+        mu: surface friction coefficient
+        C_Sf: Cornering stiffness coefficient, front
+        C_Sr: Cornering stiffness coefficient, rear
+        lf: Distance from center of gravity to front axle
+        lr: Distance from center of gravity to rear axle
+        h: Height of center of gravity
+        m: Total mass of the vehicle
+        I: Moment of inertial of the entire vehicle about the z axis
+        s_min: Minimum steering angle constraint
+        s_max: Maximum steering angle constraint
+        sv_min: Minimum steering velocity constraint
+        sv_max: Maximum steering velocity constraint
+        v_switch: Switching velocity (velocity at which the acceleration is no longer able to create wheel spin)
+        a_max: Maximum longitudinal acceleration
+        v_min: Minimum longitudinal velocity
+        v_max: Maximum longitudinal velocity
+        width: width of the vehicle in meters
+        length: length of the vehicle in meters
+        """
         # env backend
         self.env = gym.make('f110_gym:f110-v0',
                             map=self.get_parameter('map_path').value,
