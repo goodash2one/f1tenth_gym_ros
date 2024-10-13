@@ -98,10 +98,10 @@ class GymBridge(Node):
                             map=self.get_parameter('map_path').value,
                             map_ext=self.get_parameter('map_img_ext').value,
                             num_agents=num_agents,
-                            params={'mu': 0.5,\
+                            params={'mu': 0.8,\
                                     'C_Sf': 4.718, 'C_Sr': 5.4562,\
                                     'lf': 0.15875, 'lr': 0.17145,\
-                                    'h': 0.074, 'm': 4.74, 'I': 0.04712,\
+                                    'h': 0.074, 'm': 3.74, 'I': 0.04712,\
                                     's_min': -0.3636, 's_max': 0.3636,\
                                     'sv_min': -3.2, 'sv_max': 3.2,\
                                     'v_switch': 7.319,\
