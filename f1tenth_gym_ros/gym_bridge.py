@@ -102,7 +102,7 @@ class GymBridge(Node):
                                     'C_Sf': 4.718, 'C_Sr': 5.4562,\
                                     'lf': 0.15875, 'lr': 0.17145,\
                                     'h': 0.074, 'm': 3.74, 'I': 0.04712,\
-                                    's_min': -0.3636, 's_max': 0.3636,\
+                                    's_min': -0.4, 's_max': 0.4,\
                                     'sv_min': -3.2, 'sv_max': 3.2,\
                                     'v_switch': 7.319,\
                                     'a_max': 9.51, 'v_min':-5.0, 'v_max': 20.0,\
@@ -256,6 +256,8 @@ class GymBridge(Node):
             self.obs, _, self.done, _ = self.env.step(np.array([[self.ego_steer, self.ego_requested_speed]]))
         elif self.ego_drive_published and self.has_opp and self.opp_drive_published:
             self.obs, _, self.done, _ = self.env.step(np.array([[self.ego_steer, self.ego_requested_speed], [self.opp_steer, self.opp_requested_speed]]))
+        elif self.ego_drive_published and self.has_opp and not self.opp_drive_published:
+            self.obs, _, self.done, _ = self.env.step(np.array([[self.ego_steer, self.ego_requested_speed], [0.0, 0.0]]))
         self._update_sim_state()
 
     def timer_callback(self):
