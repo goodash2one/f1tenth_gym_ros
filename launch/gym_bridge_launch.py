@@ -74,14 +74,14 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='ego_robot_state_publisher',
         parameters=[{'robot_description': Command(['xacro ', os.path.join(get_package_share_directory('f1tenth_gym_ros'), 'launch', 'ego_racecar.xacro')])}],
-        remappings=[('/robot_description', 'ego_robot_description')]
+        remappings=[('/sim/robot_description', '/sim/ego_robot_description')]
     )
     opp_robot_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='opp_robot_state_publisher',
         parameters=[{'robot_description': Command(['xacro ', os.path.join(get_package_share_directory('f1tenth_gym_ros'), 'launch', 'opp_racecar.xacro')])}],
-        remappings=[('/robot_description', 'opp_robot_description')]
+        remappings=[('/sim/robot_description', '/sim/opp_robot_description')]
     )
 
     # finalize
